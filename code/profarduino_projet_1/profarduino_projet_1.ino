@@ -21,7 +21,8 @@
 #define DE_LED6 27
 #define DE_LED7 28
 
-#define TEMPS_SIGNAL 50
+#define TEMPS_AFFICHAGE_DE 1000
+#define TEMPS_EFFACEMENT_DE 1000
 
 // Variables globales en mémoire RAM
 
@@ -36,44 +37,84 @@ void setup()
   pinMode (DE_LED5, OUTPUT);
   pinMode (DE_LED6, OUTPUT);
   pinMode (DE_LED7, OUTPUT);
+
+  randomSeed(analogRead(0));
 } 
 
 // Boucle principale de l'Arduino
 // Cette portion de code est appellée indéfiniment
 void loop()
-{  
-  digitalWrite (DE_LED1, HIGH);
-  delay (TEMPS_SIGNAL);
+{
+  int tirage=0;
+  
+  tirage = random (1, 6);
+
+  if (tirage == 1)
+  {
+    digitalWrite (DE_LED4, HIGH);
+  }
+
+  if (tirage == 2)
+  {
+    digitalWrite (DE_LED3, HIGH);
+    digitalWrite (DE_LED7, HIGH);
+  }
+
+  if (tirage == 3)
+  {
+    digitalWrite (DE_LED3, HIGH);
+    digitalWrite (DE_LED4, HIGH);
+    digitalWrite (DE_LED7, HIGH);
+  }
+  
+  if (tirage == 4)
+  {
+    digitalWrite (DE_LED1, HIGH);
+    digitalWrite (DE_LED3, HIGH);
+    digitalWrite (DE_LED5, HIGH);
+    digitalWrite (DE_LED7, HIGH);
+  }
+
+  if (tirage == 5)
+  {
+    digitalWrite (DE_LED1, HIGH);
+    digitalWrite (DE_LED3, HIGH);
+    digitalWrite (DE_LED4, HIGH);
+    digitalWrite (DE_LED5, HIGH);
+    digitalWrite (DE_LED7, HIGH);
+  }
+
+  if (tirage == 6)
+  {
+    digitalWrite (DE_LED1, HIGH);
+    digitalWrite (DE_LED2, HIGH);
+    digitalWrite (DE_LED3, HIGH);
+    digitalWrite (DE_LED5, HIGH);
+    digitalWrite (DE_LED6, HIGH);
+    digitalWrite (DE_LED7, HIGH);
+  }
+
+  // Maintenir le dé allumé pendant un certain temps
+  delay (TEMPS_AFFICHAGE_DE);  
+
+  // Effacement des LEDs
   digitalWrite (DE_LED1, LOW);
-  delay (TEMPS_SIGNAL);
-  
-  digitalWrite (DE_LED2, HIGH);
-  delay (TEMPS_SIGNAL);
   digitalWrite (DE_LED2, LOW);
-  delay (TEMPS_SIGNAL);
-  
-  digitalWrite (DE_LED3, HIGH);
-  delay (TEMPS_SIGNAL);
   digitalWrite (DE_LED3, LOW);
-  delay (TEMPS_SIGNAL);
-  
-  digitalWrite (DE_LED4, HIGH);
-  delay (TEMPS_SIGNAL);
   digitalWrite (DE_LED4, LOW);
-  delay (TEMPS_SIGNAL);
-  
-  digitalWrite (DE_LED5, HIGH);
-  delay (TEMPS_SIGNAL);
   digitalWrite (DE_LED5, LOW);
-  delay (TEMPS_SIGNAL);
-  
-  digitalWrite (DE_LED6, HIGH);
-  delay (TEMPS_SIGNAL);
   digitalWrite (DE_LED6, LOW);
-  delay (TEMPS_SIGNAL);
-  
-  digitalWrite (DE_LED7, HIGH);
-  delay (TEMPS_SIGNAL);
-  digitalWrite (DE_LED7, LOW);
-  delay (TEMPS_SIGNAL);
+  digitalWrite (DE_LED7, LOW); 
+
+  // Maintenir les LED éteintes pendant un certain temps
+  delay (TEMPS_EFFACEMENT_DE);
 }
+
+
+
+
+
+
+
+
+
